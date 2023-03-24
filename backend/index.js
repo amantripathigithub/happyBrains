@@ -401,13 +401,35 @@ app.post("/solution", (req, res) => {
     
 
 
-    app.post("/solved", (req, res) => {
+    app.post("/solved",async function (req, res) {
 
-        const problem=req.body.blank2;
-        console.log(problem);
+        var problem=req.body.blank2;
         
+        problem=problem.substring(0,problem.length-1);
+        console.log(problem);
+
+      
            
+            // this option instructs the method to create a document if no documents match the filter
+            
+            // create a document that sets the plot of the movie
+            const updateDoc = {
+              $set: {
+                solved: `1`
+              },
+            };
+            const result = await Post.updateOne({problem:problem}, updateDoc);
+            
+            const posts = await Post.find({email:patient.email});
+            app.use(express.static("../frontend"));
+          return  res.render(path.join(__dirname, "../frontend", "/user-dashboard"),{patient:patient,posts:posts});
+         
         });
+      
+
+
+    
+    
         
         
 
