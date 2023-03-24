@@ -21,6 +21,7 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -222,6 +223,135 @@ app.get("/user", (req, res) => {
 });
 
 
+app.get("/user-login", (req, res) => {
+
+
+
+
+
+
+    app.use(express.static("../frontend"));
+    res.render(path.join(__dirname, "../frontend", "/user-login"));
+});
+
+
+app.get("/user-signup", (req, res) => {
+
+
+
+
+
+
+    app.use(express.static("../frontend"));
+    res.render(path.join(__dirname, "../frontend", "/user-signup"));
+});
+
+
+
+
+app.post("/loginuser",async function (req, res) {
+
+    //start
+    try {
+        // check if the user exists
+       
+        const patient = await Patient.findOne({ email: req.body.email });
+       
+        if (patient) {
+            //check if password matches
+            
+            const result = req.body.password === patient.password;
+            // for token    ---->>>>
+           // const token = await user.generateAuthToken();
+            //console.log("the token part" + token);
+            // res.cookie("jwt", token, {
+            //     expires: new Date(Date.now() + 10000000),
+            //     httpOnly: true
+            //     //secure:true
+            // });
+
+            // yaha tak ---->>>>>>
+
+            if (result) {
+                //changes are here
+                const posts = await Post.find({email:patient.email});
+                    app.use(express.static("../frontend"));
+                  return  res.render(path.join(__dirname, "../frontend", "/user-dashboard"),{patient:patient,posts:posts});
+            } else {
+                // if password not match
+                return res.json({ error: "invalid details !!" });
+            }
+        } else {
+
+
+            // if user email is not exist 
+           return res.render(path.join(__dirname, "../frontend", "/user-signup"));
+
+        }
+    } catch (error) {
+       return res.status(400).json({ error });
+    }
+
+    //end
+
+
+   
+    });
+    
+
+
+
+    app.post("/signupuser",async function (req, res) {
+
+        const email = req.body.email;
+        const password = req.body.password;
+        const cpassword = req.body.confirmpassword;
+        const name = req.body.name;
+        const contact = req.body.phone;
+        
+    
+        if (!email || !password || !cpassword) {
+    
+            return res.json({ error: "fill properly!!" });
+    
+        }
+        if (password != cpassword) {
+    
+            return res.json({ error: "password not match!!" });
+        }
+    
+    
+        con = String(contact);
+        if (con.length != 10)
+            return res.json({ error: "not a valid number" });
+    
+        Patient.findOne({ email: email, password: password })
+            .then(async (userExist) => {
+                if (userExist)
+                    return res.status(422).json({ error: "email exists already" });
+    
+                const patient = new Patient({ name: name, email: email, password: password, contact: contact });
+    
+    
+                patient.save().then(async () => {
+                    const posts = await Post.find({email:patient.email});
+                    app.use(express.static("../frontend"));
+                    res.render(path.join(__dirname, "../frontend", "/user-dashboard"),{patient:patient,posts:posts});
+                }).catch((err) => res.status(500).json({ error: "failed to register !! " }));
+    
+    
+            }).catch(err => { console.log(err); });
+    
+        //console.log(req.body);
+        //res.json({message:req.body});
+
+    });
+        
+
+
+
+
+
 app.post("/feed",async function (req, res) {
 
     
@@ -253,6 +383,10 @@ app.post("/solution", (req, res) => {
 
     const sol = req.body.blank;
     const problem2 = req.body.blank2;
+   
+
+
+
     let arr = sol.split('@,');
     arr.pop();
     //console.log(arr);
@@ -265,6 +399,19 @@ app.post("/solution", (req, res) => {
     });
     
     
+
+
+    app.post("/solved", (req, res) => {
+
+        const problem=req.body.blank2;
+        console.log(problem);
+        
+           
+        });
+        
+        
+
+
 
 app.post("/contributor-home",function(req,res){
     const email = req.body.email;

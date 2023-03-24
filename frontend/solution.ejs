@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed</title>
+    <script src="https://kit.fontawesome.com/ad18072ca1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style/style-main.css">
+</head>
+
+<body>
+    <style>
+        .left-sidebar {
+            width: 20%;
+            float: left;
+            left: 0;
+            top: 0;
+            position: absolute;
+            height: 100vh;
+            background: #eee;
+            /* padding: 1% 10px; */
+        }
+
+        .contributor-profile {
+            text-align: center;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-weight: 700;
+            font-size: 26px;
+        }
+
+        .contributor-img {
+            max-width: 100px;
+            margin: 10px;
+        }
+
+        ul.list {
+            margin: 0;
+            padding: 0;
+        }
+
+        li.list-items {
+            padding: 20px;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        li.list-items:hover {
+            background: #02a79a;
+        }
+
+        .main {
+            width: 80%;
+            position: absolute;
+            top: 0;
+            left: 20%;
+            padding: 10px;
+        }
+
+
+        .user-requests {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            align-content: center;
+        }
+
+
+        img.user-img {
+            max-width: 80px;
+        }
+
+        .users {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #eee;
+            width: 25%;
+        }
+
+        .header {
+            display: flex;
+            max-width: 100%;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            align-items: center;
+            /* padding: 0 2%; */
+            background: #3333;
+            margin: 0 0 20px 0;
+            padding: 0 40px;
+        }
+
+        .avtar.avatar-online {
+            /* width: 50px; */
+            text-align: center;
+            position: relative;
+        }
+
+        ul.dropdown-menu.dropdown-menu-end.show {
+            padding: 0;
+            margin: 0;
+            visibility: hidden;
+        }
+
+        img.contributor-avtar {
+            width: 30px;
+        }
+
+        .avtar.avatar-online:after {
+            content: "";
+            position: absolute;
+            bottom: 4px;
+            right: 0px;
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+            box-shadow: 0 0 0 2px #fff;
+            background: #71dd37;
+        }
+
+        .problem-feed {
+            border-top: 1px solid;
+            padding: 20px;
+        }
+
+        .problem {
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 20px;
+            margin: 10px;
+        }
+
+        h2.problem-title {
+            font-weight: 600;
+        }
+
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+            /* flex-wrap: nowrap; */
+        }
+
+        .btn {
+            display: flex;
+            justify-content: flex-end;
+            margin: 20px 0 0 0;
+        }
+
+        ul.solutions-feed {
+            padding: 0;
+            margin: 0;
+        }
+
+        .solution-feed {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        li.solution {
+            padding: 20px;
+            margin: 0 0 20px 0;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            background: #cff4d2;
+            position: relative;
+            box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+        }
+
+        li.solution:before {
+            content: "\f0a9";
+            position: absolute;
+            font-family: 'FontAwesome';
+            left: -24px;
+            font-size: 22px;
+        }
+    </style>
+    <div class="main-container">
+        <div class="container">
+            <div class="left-sidebar">
+                <div class="contributor-profile">
+                    <img src="images/user.png" alt="user image" class="contributor-img">
+                    <label class="contributor-name">Yogesh Kumar</label>
+                </div>
+                <div class="menu-list">
+                    <ul class="list">
+                        <li class="list-items">My Dashboard</li>
+                        <li class="list-items">Account</li>
+                        <li class="list-items">Chats</li>
+                        <li class="list-items">Donation</li>
+                        <li class="list-items">Support</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main">
+                <div class="header">
+                    <div class="greeting">
+                        <h2 class="welcome-text">
+                            <%= problem %>
+                        </h2>
+                        <p class="welcome">hello user.name and welcome to project.nanme</p>
+                    </div>
+                    <div class="my-account">
+                        <div class="avtar avatar-online">
+                            <img src="images/user.png" alt="" class="contributor-avtar">
+                        </div>
+                    </div>
+                </div>
+                <div class="solution-feed">
+                    <h3 class="solution-title">Solutions</h3>
+                    <ul class="solutions-feed">
+
+                        <% sol.forEach(function(sol){ %>
+
+
+                            <li class="solution">
+                                <%= sol%>
+                            </li>
+
+                            <% }) %>
+                    </ul>
+
+
+                </div>
+               
+                <form action="/solved" method="post">
+                    <input type="hidden" value="<%= problem %>" name="blank2" />
+                <div class="btn">
+                   
+                    <input type="submit" class="button" onclick="solved()" value="Solved">
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <script>
+function solved(){
+    console.log(document.getElementsByName("blank2")[0].value);
+
+}
+
+    </script>
+
+</body>
+
+</html>

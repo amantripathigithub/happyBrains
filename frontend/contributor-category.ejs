@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contributor Category</title>
+    <link rel="stylesheet" href="style/style-main.css">
+
+</head>
+
+<body>
+
+    <style>
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid #eee;
+            padding: 10px;
+            text-align: center;
+        }
+        .cat-container {
+    width: 40vw;
+    height: 30vw;
+    border: 1px solid;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+        .pill-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pill-container input[type="checkbox"] {
+            opacity: 0;
+            position: fixed;
+            width: 0;
+        }
+
+        .pill-container input[type="checkbox"]:checked+label {
+            background: blue;
+            color: white;
+        }
+
+        .category-selector {
+            padding: 10px 14px;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            margin: 0 10px;
+        }
+    </style>
+     <form action="/contributor-home" method="post">
+<input type="text" id="attlist1" name="attlist" value="" />
+<input type="hidden" value="<%= user.name%>" name="name" required/>
+<input type="hidden" value="<%= user.email %>" name="email" required/>
+<input type="hidden" value="<%= user.contact%>" name="phone" maxlength="10" required/>
+<input type="hidden" value="<%= user.password%>" name="password" required/>
+<input type="hidden" value="<%= user.cpassword %>"name="confirmpassword" required/>
+    <div class="container">
+        <div class="cat-container">
+            <h1 class="title">Help us Make you categorised</h1>
+            <div class="pill-container">
+                <input type="checkbox" id="option-1" name="selector" value="a" >
+                <label class="category-selector option-a" for="option-1"> Option A </label>
+
+                <input type="checkbox" id="option-2" name="selector" value="b">
+                <label class="category-selector" for="option-2">Option B</label>
+
+                <input type="checkbox" id="option-3" name="selector" value="c">
+                <label class="category-selector" for="option-3">Option C</label>
+
+                <input type="checkbox" id="option-4" name="selector" value="d">
+                <label class="category-selector" for="option-4">Option D</label>
+
+                <input type="checkbox" id="option-5" name="selector" value="e">
+                <label class="category-selector" for="option-e">Option El</label>
+            </div>
+            <button class="contributor-next-btn" onclick="next()">ADD</button>
+            
+        </div>
+       
+            <!-- <input class="activex home" type="submit" value="Home" name="submit" /> -->
+    
+          </form>
+    </div>
+   <script>
+    function next(){
+     let checkbox=document.getElementsByName("selector");
+     let val="";
+     for(let i=0;i<checkbox.length;i++){
+        if(checkbox[i].checked===true)
+        val=val + checkbox[i].value+",";
+     }
+     document.getElementById("attlist1").value=val;
+
+    // console.log(val); 
+    }
+   </script>
+</body>
+
+</html>

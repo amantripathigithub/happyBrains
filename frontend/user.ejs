@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <link rel="stylesheet" href="style/style-main.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="container">
+            <div class="questions">
+                <div class="questions-container">
+                    <strong>What led you to consider therapy today?</strong>
+                    <form action="/feed" method="post">
+                        <input type="hidden" value="" name="blank"/>
+                        <div class="question">
+                            <input type="radio" id="question-1" name="question" value="health">
+                              <label for="question-1">health</label><br>
+                        </div>
+                        <div class="question">
+                            <input type="radio" id="question-2" name="question" value="education">
+                              <label for="question-2">education</label><br>
+                        </div>
+                        <div class="question">
+                            <input type="radio" id="question-3" name="question" value="relationship">
+                              <label for="question-3">relationship</label><br>
+                        </div>
+                        
+                        <!-- <div class="question">
+                            <input type="radio" id="question-5" name="question" value="">
+                              <label for="question-5">I can't find purpose and meaning in my life</label><br>
+                        </div>
+                        <div class="question">
+                            <input type="radio" id="question-6" name="question" value="">
+                              <label for="question-6">I am grieving</label><br>
+                        </div>
+                        <div class="question">
+                            <input type="radio" id="question-7" name="question" value="">
+                              <label for="question-7">I have experienced trauma</label><br>
+                        </div>
+                        <div class="question">
+                            <input type="radio" id="question-8" name="question" value="">
+                              <label for="question-8">I need to talk through a specific challenge</label><br>
+                        </div>
+                        <div class="question">
+                            <input type="radio" id="question-9" name="question" value="">
+                              <label for="question-9">I want to gain self confidence</label><br>
+                        </div>
+                        <div class="question">
+                            <input type="radio" id="question-10" name="question" value="">
+                              <label for="question-10">I want to improve myself but I don’t know where to
+                                start</label><br>
+                        </div>
+                        <div class="question">
+                            <input type="radio" id="question-11" name="question" value="">
+                              <label for="question-11">Recommended to me (friend, family, doctor)</label><br>
+                        </div>
+                        <div class="question">
+                            <input type="radio" id="question-12" name="question" value="">
+                              <label for="question-12">Just exploring</label><br>
+                        </div>
+                        <div class="question">
+                            <input type="radio" id="question-13" name="question" value="">
+                              <label for="question-13">Other</label><br>
+                        </div> -->
+
+                        <input class="button" type="submit" value="Next" name="submit" onclick="next()"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .question {
+            padding: 5px;
+            font-size: 20px;
+            background: #eee;
+            margin: 5px 0 0 0;
+        }
+
+        .questions {
+            padding: 13px;
+            border: 1px solid;
+            font-size: 22px;
+            border-radius: 10px;
+        }
+
+        form {
+            margin: 25px 0;
+        }
+    </style>
+
+<script>
+    function next(){
+     let checkbox=document.getElementsByName("question");
+     let val="";
+     for(let i=0;i<checkbox.length;i++){
+        if(checkbox[i].checked===true)
+        document.getElementsByName("blank")[0].value=checkbox[i].value;
+        //console.log(document.getElementsByName("blank")[0].value);
+     }
+     
+
+    // console.log(val); 
+    }
+   </script>
+
+</body>
+
+</html>
