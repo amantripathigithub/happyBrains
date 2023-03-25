@@ -646,6 +646,16 @@ const problem=req.body.problem;
     
 
 
+
+app.post("/about", (req, res) => {
+
+
+                
+                    app.use(express.static("../frontend"));
+                    res.render(path.join(__dirname, "../frontend", "/about"));
+    });
+
+
 app.post("/postsolution", async (req, res) => {
 
     
