@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,60 +8,60 @@
     <title>Solve</title>
     <link rel="stylesheet" href="style/style-main.css">
 </head>
-<body>
-    <div class="post-form">
-        <div class="post-form-container">
-            <h3 class="post-create-title">Post your problem and get solution</h3>
-            <form action="/createpost" method="post">
-                <div class="problem-category">
-                    <label class="problem-cat-text">Your Problem Category</label>
-                    <input type="text" value="health" class="problem-cat" name="problemcategory" readonly="">
-                </div>
-                <div class="problem-container">
-                    <label> Describe your problem</label>
-                    <textarea class="problem-write" name="problem" rows="9" cols="25" required=""></textarea>
 
-                </div>
-                <div class="post-btn">
-                    <input type="submit" class="button" value="Post Your Problem">
-                </div>
-            </form>
+<body>
+    <div class="main">
+        <div class="post-form">
+            <div class="post-form-container">
+                <h3 class="post-create-title">Ynha problem likh de bhai jaldi se</h3>
+                <form action="/createpost" method="post">
+                    <div class="problem-container">
+                        <label> Write problme solution</label>
+                        <textarea class="problem-write" name="problem" rows="9" cols="25" required=""></textarea>
+
+                    </div>
+                    <div class="post-btn">
+                        <input type="submit" class="button" value="Post the solution">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <style>
-.post-form {
-    float: right;
-    padding: 20px;
-    width: 40%;
-    height: 30%;
-    background: #d9c6c6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    margin: 0 20px 0 0;
-}
-.post-form-container {
-    width: 100%;
-}
-.post-form-container {
-    width: 100%;
-}
-input.problem-cat {
-    display: block;
-    padding: 10px;
-    margin: 0 0 10px 0;
-    width: 100%;
-    font-size: 20px;
-}
-textarea.problem-write {
-    width: 100%;
-    font-size: 20px;
-}
-input.button {
-    padding: 6px 12px;
-}
+        h3.post-create-title {
+            margin: 10px 0 20px 0;
+        }
 
+        .post-form {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .post-form-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background: #e7e8e9;
+            border-radius: 10px;
+            box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+        }
+
+        textarea.problem-write {
+            width: 100%;
+            font-size: 20px;
+            padding: 10px;
+        }
+
+        input.button {
+            padding: 6px 12px;
+        }
+
+        .post-btn {
+            float: right;
+        }
     </style>
 </body>
+
 </html>
