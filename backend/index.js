@@ -326,15 +326,46 @@ app.get("/user-signup", (req, res) => {
 
 
 
-app.post("/solve", (req, res) => {
+app.post("/solve", async (req, res) => {
 
 
 
+var problem=req.body.blank2;
+var email=req.body.blank3;
+
+// neeeeeeeeeded
 
 
+
+// if(problem[problem.length-1]===",")
+// problem=problem.substring(0,problem.length-1);
+
+// var post = await Post.findOne({ problem:problem });
+// var arr=post.solutions;
+// arr.push()
+
+// const updateDoc = {
+//     $set: {
+//       solved: `1`
+//     },
+//   };
+//   var posts;
+//   var patient;
+//   const result = await Post.updateOne({problem:problem}, updateDoc).then(async (message)=>
+//  {
+//  // posts = await Post.find({email:email}).then(async (message2)=>{
+//       // patient = await Patient.find({email:email}).then((message3)=>{
+//       //     //for(var i=1;i<100000000;i++);
+          
+         
+//       // });
+  
+//  } );
+
+// neeeeeeeeeded
 
     app.use(express.static("../frontend"));
-    res.render(path.join(__dirname, "../frontend", "/solve"));
+    res.render(path.join(__dirname, "../frontend", "/solve"),{problem:problem,email:email});
 });
 
 
@@ -582,7 +613,7 @@ var solved=req.body.blank6;
 
 
 
-        app.post("/createpost", (req, res) => {
+app.post("/createpost", (req, res) => {
 
 
 const ptype=req.body.problemcategory;
@@ -591,8 +622,76 @@ const problem=req.body.problem;
             
                 app.use(express.static("../frontend"));
                 res.render(path.join(__dirname, "../frontend", "/verifylogin"),{ptype:ptype,problem:problem});
-            });
+});
     
+
+
+app.post("/postsolution", async (req, res) => {
+
+    
+    var problem=req.body.blank2;
+    var solution=req.body.solution;
+    solution=solution+"@";
+
+    // neeeeeeeeeded
+    
+    
+    
+    if(problem[problem.length-1]===",")
+    problem=problem.substring(0,problem.length-1);
+    console.log(problem);
+    var post = await Post.findOne({ problem:problem });
+    var arr=post.solutions;
+    arr.push(solution);
+    
+    const updateDoc = {
+        $set: {
+          solutions:arr
+        },
+      };
+      var posts;
+      var patient;
+      const result = await Post.updateOne({problem:problem}, updateDoc).then(async (message)=>
+     {
+     // posts = await Post.find({email:email}).then(async (message2)=>{
+          // patient = await Patient.find({email:email}).then((message3)=>{
+          //     //for(var i=1;i<100000000;i++);
+              
+             
+          // });
+      
+     } );
+const email=req.body.blank3;
+     const cont = await Contributor.findOne({ email:email });
+
+
+     category=cont.category;
+               
+     if(category[category.length-1]===','){
+         category=category.substring(0,category.length-1);
+     }
+     category=category.split(",");
+     
+   var  postss=[];
+
+     for(var i=0;i<category.length;i++){
+        var posts = await Post.find({ptype:category[i]});
+        if(posts.length)
+         postss.push(posts);
+         //console.log(posts);
+     }
+
+     var posts=[];
+     for(var i=0;i<postss.length;i++){
+         for(var j=0;j<postss[i].length;j++){
+             posts.push(postss[i][j]);
+         }
+     }
+     
+         app.use(express.static("../frontend"));
+       return  res.render(path.join(__dirname, "../frontend", "/contributor-home"),{posts:posts,cont:cont});
+    });
+        
     
 app.post("/verifylogin", async (req, res) => {
 
