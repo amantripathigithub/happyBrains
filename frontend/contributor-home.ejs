@@ -35,84 +35,72 @@
                     </div>
                     <div class="my-account">
                         <div class="avtar avatar-online">
-                            <img src="images/user.png" alt="" class="contributor-avtar">                           
+                            <img src="images/user.png" alt="" class="contributor-avtar">
                         </div>
                     </div>
                 </div>
-                <div class="chat-room">
-                    <p class="chat-info"></p>
-                    <form action="/" method="post">
-                        <input class="button" type="submit" value="Chat Room" name="submit" />
-                      </form>
-                </div>
-                <div class="user-requests">
-                    
-                    <div class="users">
-                        <div class="user-image">
-                            <img src="images/user.png" alt="user image" class="user-img">
-                        </div>
-                        <div class="user-info">
-                            <h3 class="user-name">
-                                Aman Kumar
-                            </h3>
-                        </div>
-                        <div class="message">
-                            <button>Message</button>
-                        </div>
-                    </div>
-                    <div class="users">
-                        <div class="user-image">
-                            <img src="images/user.png" alt="user image" class="user-img">
-                        </div>
-                        <div class="user-info">
-                            <h3 class="user-name">
-                                Aman Kumar
-                            </h3>
-                        </div>
-                        <div class="message">
-                            <button>Message</button>
-                        </div>
-                    </div>
-                    <div class="users">
-                        <div class="user-image">
-                            <img src="images/user.png" alt="user image" class="user-img">
-                        </div>
-                        <div class="user-info">
-                            <h3 class="user-name">
-                                Aman Kumar
-                            </h3>
-                        </div>
-                        <div class="message">
-                            <button>Message</button>
-                        </div>
-                    </div>
-                    <div class="users">
-                        <div class="user-image">
-                            <img src="images/user.png" alt="user image" class="user-img">
-                        </div>
-                        <div class="user-info">
-                            <h3 class="user-name">
-                                Aman Kumar
-                            </h3>
-                        </div>
-                        <div class="message">
-                            <button>Message</button>
-                        </div>
-                    </div>
-                    <div class="users">
-                        <div class="user-image">
-                            <img src="images/user.png" alt="user image" class="user-img">
-                        </div>
-                        <div class="user-info">
-                            <h3 class="user-name">
-                                Aman Kumar
-                            </h3>
-                        </div>
-                        <div class="message">
-                            <button>Message</button>
-                        </div>
-                    </div>
+                <div class="feed-container">
+                    <div class="problem-feed">
+                        <% if(posts!=null) { %>
+                            <% posts.forEach(function(posts){ %>
+                                <form action="/solutionfeed" method="post">
+                                    <input type="hidden" value="<%=posts.solutions%>," name="blank" />
+                                    <input type="hidden" value="<%=posts.problem%>," name="blank2" />
+                                    <div class="problem">
+                                        <h2 class="problem-title">
+                                            <%= posts.problem%>
+                                        </h2>
+                                        <div class="info">
+                                            <span class="problem-admin">
+                                                <%= posts.name%>
+                                            </span>
+                                            <% if(posts.solved===1) { %>
+                                                <div class="verifyed-ans">
+                                                    <i class="fa-solid fa-file-check"></i> <span
+                                                        class="issolved">solved</span>
+                                                </div>
 
+                                                <% } %>
+
+                                                    <% if(posts.solved===0) { %>
+                                                        <div class="un-verifyed-ans">
+                                                            <i class="fa-solid fa-x"></i> <span
+                                                                class="issolved">unsolved</span>
+                                                        </div>
+                                                        <% } %>
+
+                                        </div>
+                                        <div class="btn">
+                                            <input type="submit" class="button" value="Solve">
+                                        </div>
+
+                                    </div>
+                                </form>
+                                <% }) %>
+                                    <% } %>
+
+                    </div>
+                    <div class="post-form">
+                        <div class="post-form-container">
+                            <h3 class="post-create-title">Post your problem and get solution</h3>
+                            <form action="/createpost" method="post">
+                                <div class="problem-category">
+                                    <label class="problem-cat-text">Your Problem Category</label>
+                                    <input type="text" value="<%=posts[0].ptype%>" class="problem-cat" name="problemcategory"
+                                        readonly>
+                                </div>
+                                <div class="problem-container">
+                                    <label> Describe your problem</label>
+                                    <textarea class="problem-write" name="problem" rows="9" cols="25"
+                                        required></textarea>
+
+                                </div>
+                                <div class="post-btn">
+                                    <input type="submit" class="button" value="Post Your Problem">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
