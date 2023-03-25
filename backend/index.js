@@ -106,15 +106,38 @@ app.post("/contributorsignin",async function(req,res){
             // yaha tak ---->>>>>>
 
             if (result) {
-                //changes are here
-               // const posts = await Post.find({email:patient.email});
+
+                category=cont.category;
+               
+                if(category[category.length-1]===','){
+                    category=category.substring(0,category.length-1);
+                }
+                category=category.split(",");
+                
+              var  postss=[];
+
+                for(var i=0;i<category.length;i++){
+                   var posts = await Post.find({ptype:category[i]});
+                   if(posts.length)
+                    postss.push(posts);
+                    console.log(posts);
+                }
+
+                var posts=[];
+                for(var i=0;i<postss.length;i++){
+                    for(var j=0;j<postss[i].length;j++){
+                        posts.push(postss[i][j]);
+                    }
+                }
+                
                     app.use(express.static("../frontend"));
-                  return  res.render(path.join(__dirname, "../frontend", "/contributor-home"));
+                  return  res.render(path.join(__dirname, "../frontend", "/contributor-home"),{posts:posts,cont:cont});
             } else {
                 // if password not match
                 return res.json({ error: "invalid details !!" });
             }
         } else {
+
 
 
 
