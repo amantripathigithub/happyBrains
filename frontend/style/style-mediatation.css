@@ -99,3 +99,10 @@ li.menu-items a {
 #freepik--Character--inject-4 {
     animation: mover 1s infinite alternate;
 }
+h2.banner-heading {
+    font-size: 40px;
+}
+
+p.banner-text {
+    font-size: 16px;
+}
