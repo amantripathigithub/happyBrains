@@ -206,7 +206,7 @@
             <div class="left-sidebar">
                 <div class="contributor-profile">
                     <img src="images/user.png" alt="user image" class="contributor-img">
-                    <label class="contributor-name">Yogesh Kumar</label>
+                    <label class="contributor-name"><%= patient.name%></label>
                 </div>
                 <div class="menu-list">
                     <ul class="list">
@@ -222,7 +222,7 @@
                 <div class="header">
                     <div class="greeting">
                         <h2 class="welcome-text">project name</h2>
-                        <p class="welcome">hello user.name and welcome to project.nanme</p>
+                        <p class="welcome">email : <%= patient.email %></p>
                     </div>
                     <div class="my-account">
                         <div class="avtar avatar-online">
@@ -238,7 +238,8 @@
                                 <form action="/solution" method="post">
                                     <input type="hidden" value="<%=posts.solutions%>," name="blank" />
                                     <input type="hidden" value="<%=posts.problem%>," name="blank2" />
-                                   
+                                    <input type="hidden" value="<%=patient.email %>" name="blank3" />
+                                    <input type="hidden" value="<%=patient.name %>" name="blank4" />
                                     <div class="problem">
                                         <h2 class="problem-title">
                                             <%= posts.problem%>
