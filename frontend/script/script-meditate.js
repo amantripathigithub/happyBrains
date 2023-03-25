@@ -10,7 +10,7 @@ const timeDisplay = document.querySelector(".time-display");
 const outlineLength = outline.getTotalLength();
 //Duration
 const timeSelect = document.querySelectorAll(".time-select button");
-let fakeDuration = 600;
+let fakeDuration = 300;
 
 outline.style.strokeDashoffset = outlineLength;
 outline.style.strokeDasharray = outlineLength;
@@ -21,6 +21,7 @@ timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${Math.floor(
 sounds.forEach(sound => {
   sound.addEventListener("click", function() {
     song.src = this.getAttribute("data-sound");
+
     //video.src = this.getAttribute("data-image");
     checkPlaying(song);
   });
