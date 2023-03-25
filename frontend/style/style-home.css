@@ -60,7 +60,6 @@ li.menu-items a {
     display: block;
     position: absolute;
     left: 0;
-    top: 0;
     width: 100%;
     height: 100%;
     z-index: 1;
@@ -108,7 +107,7 @@ p.banner-text {
 }
 
 section.user {
-    background: #eee;
+    background: #08698f;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -125,15 +124,19 @@ section.user {
     /* transform: translate(-50%, -50%); */
 }
 .user-login-section {
-    width: 40%;
+    width: 45%;
     border: 1px solid;
-    padding: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
 }
 
 .contributor-login {
-    width: 40%;
+    width: 45%;
     border: 1px solid;
-    padding: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
 }
 
 form.user-login-container {
