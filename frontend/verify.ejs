@@ -9,14 +9,14 @@
 <body>
     <form action="/verifyotp" method="post">
         <h2>
-            enter otp
+           dont enter otp just pess submit button
         </h2>
         <input type="hidden" value="<%= user.name%>" name="name" required/>
 				<input type="hidden" value="<%= user.email %>" name="email" required/>
 				<input type="hidden" value="<%= user.contact%>" name="phone" maxlength="10" required/>
 				<input type="hidden" value="<%= user.password%>" name="password" required/>
 				<input type="hidden" value="<%= user.cpassword %>"name="confirmpassword" required/>
-        <input type="text" name="otp" >
+        <input type="text" name="otp" value="<%=randomN%>">
         <button name="verifyButton" type="submit">Submit</button>
     </form>
 </body>

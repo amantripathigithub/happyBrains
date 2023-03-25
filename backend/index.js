@@ -271,7 +271,7 @@ app.post("/signupcon", (req, res) => {
 
 
 
-                client.messages.create({body:randomN, from:'+14754051584',to:"+91"+contact}).then(message=>console.log(message.sid)).catch((err)=>{console.log(err)});
+        // 1---->>  client.messages.create({body:randomN, from:'+14754051584',to:"+91"+contact}).then(message=>console.log(message.sid)).catch((err)=>{console.log(err)});
                 //console.log("ha bhai");
                   
                
@@ -280,7 +280,7 @@ app.post("/signupcon", (req, res) => {
 
                 const user = new Contributor({ name: name, email: email, password: password, contact: contact ,category:"",rating:"0"});
                 app.use(express.static("../frontend"));
-               return  res.render(path.join(__dirname, "../frontend", "/verify"),{user:user});
+               return  res.render(path.join(__dirname, "../frontend", "/verify"),{user:user,randomN:randomN});
 
             // user.save().then(() => {
             //     res.status(201).json({ message: "registered !! " });
@@ -795,9 +795,50 @@ app.post("/contributor-home",function(req,res){
 
     const user = new Contributor({ name: name, email: email, password: password, contact: contact ,category:cat,rating:"5"});
 
- user.save().then(() => {
-    app.use(express.static("../frontend"));
-    res.render(path.join(__dirname, "../frontend", "/contributor-home"),{user:user});
+ user.save().then(async () => {
+
+
+    const cont = await Contributor.findOne({ email:email });
+
+
+    category=cat;
+              
+    if(category[category.length-1]===','){
+        category=category.substring(0,category.length-1);
+    }
+    category=category.split(",");
+    
+  var  postss=[];
+
+    for(var i=0;i<category.length;i++){
+       var posts = await Post.find({ptype:category[i]});
+       if(posts.length)
+        postss.push(posts);
+        //console.log(posts);
+    }
+
+    var posts=[];
+    for(var i=0;i<postss.length;i++){
+        for(var j=0;j<postss[i].length;j++){
+            posts.push(postss[i][j]);
+        }
+    }
+    
+        app.use(express.static("../frontend"));
+      return  res.render(path.join(__dirname, "../frontend", "/contributor-home"),{posts:posts,cont:cont});
+
+
+
+
+
+
+
+
+
+
+
+    // app.use(express.static("../frontend"));
+    // res.render(path.join(__dirname, "../frontend", "/contributor-home"),{user:user});
             }).catch((err) => res.status(500).json({ error: "failed to register !! " }));
 
 
