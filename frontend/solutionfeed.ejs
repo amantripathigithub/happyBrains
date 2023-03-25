@@ -128,57 +128,35 @@
         .problem-feed {
             border-top: 1px solid;
             padding: 20px;
-            width: 70%;
         }
 
         .problem {
             border: 1px solid #eee;
-            padding: 10px;
+            padding: 20px;
             border-radius: 20px;
             margin: 10px;
         }
 
         h2.problem-title {
             font-weight: 600;
-            font-size: 22px;
         }
 
 
         .info {
             display: flex;
-            flex-direction: row;
-            align-items: center;
+            justify-content: space-between;
+            /* flex-wrap: nowrap; */
         }
 
         .btn {
             display: flex;
             justify-content: flex-end;
-            margin: 4px 0 0 0;
+            margin: 20px 0 0 0;
         }
 
-        input.button {
-            padding: 6px 12px;
-        }
-
-        .verifyed-ans {
-            font-size: 14px;
-            font-weight: 600;
-            border: 1px solid #eee;
-            padding: 5px 10px;
-            border-radius: 20px;
-            background: #55ba6d;
-            color: #000;
-            margin: 0 0 0 20px;
-        }
-
-        .un-verifyed-ans {
-            font-size: 12px;
-            font-weight: 600;
-            border: 1px solid #eee;
-            padding: 5px 10px;
-            border-radius: 20px;
-            margin: 0 0 0 20px;
-            color: #FF4B2B;
+        ul.solutions-feed {
+            padding: 0;
+            margin: 0;
         }
 
         .solution-feed {
@@ -186,19 +164,22 @@
             margin: 0 auto;
         }
 
-        input.solved {
-            border-radius: 20px;
-            border: 1px solid #FF4B2B;
-            background-color: #7ce495;
-            color: #252525;
-            font-size: 12px;
-            font-weight: bold;
-            padding: 6px 12px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: transform 80ms ease-in;
-            cursor: pointer;
-            margin: 0 20px 0 0;
+        li.solution {
+            padding: 20px;
+            margin: 0 0 20px 0;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            background: #cff4d2;
+            position: relative;
+            box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+        }
+
+        li.solution:before {
+            content: "\f0a9";
+            position: absolute;
+            font-family: 'FontAwesome';
+            left: -24px;
+            font-size: 22px;
         }
     </style>
     <div class="main-container">
@@ -206,7 +187,7 @@
             <div class="left-sidebar">
                 <div class="contributor-profile">
                     <img src="images/user.png" alt="user image" class="contributor-img">
-                    <label class="contributor-name"><%= patient.name%></label>
+                   
                 </div>
                 <div class="menu-list">
                     <ul class="list">
@@ -221,8 +202,10 @@
             <div class="main">
                 <div class="header">
                     <div class="greeting">
-                        <h2 class="welcome-text">project name</h2>
-                        <p class="welcome">email : <%= patient.email %></p>
+                        <h2 class="welcome-text">
+                            <%= problem %>
+                        </h2>
+                        
                     </div>
                     <div class="my-account">
                         <div class="avtar avatar-online">
@@ -230,59 +213,39 @@
                         </div>
                     </div>
                 </div>
-                <div class="feed-container">
-                    <div class="problem-feed">
-                        <% if(posts!=null) { %>
-                            <% posts.forEach(function(posts){ %>
+                <div class="solution-feed">
+                    <h3 class="solution-title">Solutions</h3>
+                    <ul class="solutions-feed">
 
-                                <form action="/solution" method="post">
-                                    <input type="hidden" value="<%=posts.solutions%>," name="blank" />
-                                    <input type="hidden" value="<%=posts.problem%>," name="blank2" />
-                                    <input type="hidden" value="<%=patient.email %>" name="blank3" />
-                                    <input type="hidden" value="<%=patient.name %>" name="blank4" />
-                                    <input type="hidden" value="<%=patient%>" name="blank5" />
-                                    <input type="hidden" value="<%=posts.solved%>" name="blank6" />
-                                    <div class="problem">
-                                        <h2 class="problem-title">
-                                            <%= posts.problem%>
-                                        </h2>
-                                        <div class="info">
-                                            <span class="problem-admin">
-                                                <%= posts.name%>
-                                            </span>
-                                            <% if(posts.solved===1) { %>
-                                                <div class="verifyed-ans">
-                                                    <i class="fa-solid fa-file-check"></i> <span
-                                                        class="issolved">solved</span>
-                                                </div>
+                        <% sol.forEach(function(sol){ %>
 
-                                                <% } %>
 
-                                                    <% if(posts.solved===0) { %>
-                                                        <div class="un-verifyed-ans">
-                                                            <i class="fa-solid fa-x"></i> <span
-                                                                class="issolved">unsolved</span>
-                                                        </div>
-                                                        <% } %>
+                            <li class="solution">
+                                <%= sol%>
+                            </li>
 
-                                        </div>
-                                        <div class="btn">
-                                           
-                                            <input type="submit" class="button" value="Solution">
-                                        </div>
+                            <% }) %>
+                    </ul>
 
-                                    </div>
-                                </form>
-                                <% }) %>
-                                    <% } %>
-
-                    </div>
 
                 </div>
+               
+                <form action="/solved" method="post">
+                    <input type="hidden" value="<%= problem %>" name="blank2" />
+                    
+                <div class="btn">
+                   
+                    <input type="hidden" class="button" value="">
+                </div>
+            </form>
             </div>
         </div>
     </div>
     <script>
+function solved(){
+    console.log(document.getElementsByName("blank2")[0].value);
+
+}
 
     </script>
 
