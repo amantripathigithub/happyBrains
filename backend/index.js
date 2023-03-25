@@ -70,7 +70,7 @@ var randomN=123456;
 
 app.get("/", (req, res) => {
     app.use(express.static("../frontend"));
-    res.render(path.join(__dirname, "../frontend", "/contributor"));
+    res.render(path.join(__dirname, "../frontend", "/home"));
 });
 
 
@@ -120,7 +120,7 @@ app.post("/contributorsignin",async function(req,res){
                    var posts = await Post.find({ptype:category[i]});
                    if(posts.length)
                     postss.push(posts);
-                    console.log(posts);
+                   // console.log(posts);
                 }
 
                 var posts=[];
@@ -178,8 +178,8 @@ app.post("/verify",function(req,res){
 
 app.post("/verifyotp",async function(req,res){
     const code=Number(req.body.otp);
-    console.log(randomN);
-    console.log(code);
+    //console.log(randomN);
+    //console.log(code);
     if(randomN===code){
 
 
@@ -188,7 +188,7 @@ app.post("/verifyotp",async function(req,res){
         const cpassword = req.body.confirmpassword;
         const name = req.body.name;
         const contact = req.body.phone;
-        console.log(req.body);
+        //console.log(req.body);
        // const image = req.file.filename;
     
        
@@ -252,7 +252,7 @@ app.post("/signupcon", (req, res) => {
 
 
                 client.messages.create({body:randomN, from:'+14754051584',to:"+91"+contact}).then(message=>console.log(message.sid)).catch((err)=>{console.log(err)});
-                console.log("ha bhai");
+                //console.log("ha bhai");
                   
                
 
@@ -639,7 +639,7 @@ app.post("/postsolution", async (req, res) => {
     
     if(problem[problem.length-1]===",")
     problem=problem.substring(0,problem.length-1);
-    console.log(problem);
+    //console.log(problem);
     var post = await Post.findOne({ problem:problem });
     var arr=post.solutions;
     arr.push(solution);
