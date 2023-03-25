@@ -284,6 +284,7 @@ app.post("/loginuser",async function (req, res) {
         } else {
 
 
+
             // if user email is not exist 
            return res.render(path.join(__dirname, "../frontend", "/user-signup"));
 
@@ -382,8 +383,15 @@ app.post("/solution", (req, res) => {
 
 
     const sol = req.body.blank;
-    const problem2 = req.body.blank2;
-   
+    var problem2 = req.body.blank2;
+   var email = req.body.blank3;
+   var name = req.body.blank4;
+   if(problem2[problem2.length-1]===',')
+   problem2=problem2.substring(0,problem2.length-1);
+   if(email[email.length-1]===',')
+   email=email.substring(0,email.length-1);
+   if(name[name.length-1]===',')
+   name=name.substring(0,name.length-1);
 
 
 
@@ -395,7 +403,7 @@ app.post("/solution", (req, res) => {
         //console.log(req.body);
     
         app.use(express.static("../frontend"));
-        res.render(path.join(__dirname, "../frontend", "/solution"),{sol:arr,problem:problem2});
+        res.render(path.join(__dirname, "../frontend", "/solution"),{sol:arr,problem:problem2,email:email,name:name});
     });
     
     
@@ -404,9 +412,17 @@ app.post("/solution", (req, res) => {
     app.post("/solved",async function (req, res) {
 
         var problem=req.body.blank2;
-        
-        problem=problem.substring(0,problem.length-1);
-        console.log(problem);
+        var email=req.body.blank3;
+        var name = req.body.blank4;
+        if(problem[problem.length-1]===',')
+   problem=problem.substring(0,problem.length-1);
+   if(email[email.length-1]===',')
+   email=email.substring(0,email.length-1);
+   if(name[name.length-1]===',')
+   name=name.substring(0,name.length-1);
+       // problem=problem.substring(0,problem.length-1);
+       // email=email.substring(0,email.length-1);
+        console.log(email+name+problem);
 
       
            
@@ -418,12 +434,26 @@ app.post("/solution", (req, res) => {
                 solved: `1`
               },
             };
-            const result = await Post.updateOne({problem:problem}, updateDoc);
-            
-            const posts = await Post.find({email:patient.email});
-            app.use(express.static("../frontend"));
-          return  res.render(path.join(__dirname, "../frontend", "/user-dashboard"),{patient:patient,posts:posts});
+            var posts;
+            var patient;
+            const result = await Post.updateOne({problem:problem}, updateDoc).then(async (message)=>
+           {
+            posts = await Post.find({email:email}).then(async (message2)=>{
+                patient = await Patient.find({email:email}).then((message3)=>{
+                    //for(var i=1;i<100000000;i++);
+                    // app.use(express.static("../frontend"));
+                    // return  res.render(path.join(__dirname, "../frontend", "/user-dashboard"),{patient:patient,posts:posts});
+                   
+                });
+            });
+           } );
+            //clearTimeout(30000);
+        
+           //// clearTimeout(30000);
          
+           //clearTimeout(300000);
+            //console.log(patient);
+           
         });
       
 
