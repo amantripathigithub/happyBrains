@@ -47,7 +47,7 @@
                     <div class="problem-feed">
                         <% if(posts!=null) { %>
                             <% posts.forEach(function(posts){ %>
-                                <form action="/solutionfeed" method="post">
+                                <form action="/solve" method="post">
                                     <input type="hidden" value="<%=posts.solutions%>," name="blank" />
                                     <input type="hidden" value="<%=posts.problem%>," name="blank2" />
                                     <div class="problem">

@@ -326,6 +326,20 @@ app.get("/user-signup", (req, res) => {
 
 
 
+app.post("/solve", (req, res) => {
+
+
+
+
+
+
+    app.use(express.static("../frontend"));
+    res.render(path.join(__dirname, "../frontend", "/solve"));
+});
+
+
+
+
 
 app.post("/loginuser",async function (req, res) {
 
