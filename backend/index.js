@@ -76,8 +76,63 @@ app.get("/", (req, res) => {
 
 app.get("/logincon", (req, res) => {
     app.use(express.static("../frontend"));
-    res.render(path.join(__dirname, "../frontend", "/contributor-login"));
+    return res.render(path.join(__dirname, "../frontend", "/contributor-login"));
 });
+
+app.post("/contributorsignin",async function(req,res){
+    
+    const email = req.body.email;
+    //console.log(email);
+    const password = req.body.password;
+    
+    try {
+        // check if the user exists
+       
+        const cont = await Contributor.findOne({ email:email });
+       
+        if (cont) {
+            //check if password matches
+            
+            const result = req.body.password === cont.password;
+            // for token    ---->>>>
+           // const token = await user.generateAuthToken();
+            //console.log("the token part" + token);
+            // res.cookie("jwt", token, {
+            //     expires: new Date(Date.now() + 10000000),
+            //     httpOnly: true
+            //     //secure:true
+            // });
+
+            // yaha tak ---->>>>>>
+
+            if (result) {
+                //changes are here
+               // const posts = await Post.find({email:patient.email});
+                    app.use(express.static("../frontend"));
+                  return  res.render(path.join(__dirname, "../frontend", "/contributor-home"));
+            } else {
+                // if password not match
+                return res.json({ error: "invalid details !!" });
+            }
+        } else {
+
+
+
+            // if user email is not exist 
+           return res.render(path.join(__dirname, "../frontend", "/contributor-signup"));
+
+        }
+    } catch (error) {
+       return res.status(400).json({ error });
+    }
+
+    //end
+
+
+})
+
+
+
 
 app.get("/signupcon", (req, res) => {
     app.use(express.static("../frontend"));
