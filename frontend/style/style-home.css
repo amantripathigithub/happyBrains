@@ -106,3 +106,19 @@ h2.banner-heading {
 p.banner-text {
     font-size: 16px;
 }
+
+section.user {
+    background: #eee;
+    height: 100vh;
+}
+
+.user-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    /* position: absolute; */
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
+}
