@@ -10,12 +10,19 @@
     <link rel="stylesheet" href="style/style-main.css">
   </head>
   <body>
+    <div class="curveWrap">
+      <svg width="100%" height="100%" viewBox="0 0 1200 100" xmlns="http://www.w3.org/2000/svg">
+        <g class="curve" fill="none">
+          <!-- You can add more, fewer, and tweak paths... -->
+          <path d="M 0, 60 S 300, -60, 600, 60, 800, -120, 1200 60" />
+          <path d="M 0, 60 S 200, -60, 400, 60, 900, -120, 1200 60" />
+          <path d="M 0, 60 S 200, -70, 400, 70, 800, -120, 1200 60" />
+          <path d="M 0, 60 S 200, -60, 400, 80, 600, -120, 1200 60" />
+    <!--  <path d="M 0, 60 S 300, -60, 600, 60, 800, -120, 1200 60" /> -->
+        </g>
+      </svg>
+    </div>
     <div class="app">
-      <div class="vid-container">
-       
-          <img src="/images/user.png"  alt="background image">
-
-        </div>
         <div class="time-select">
           <button data-time="300">5 mins</button>
           <button data-time="600">10 mins</button>
@@ -28,7 +35,7 @@
         </div>
         <div class="player-container">
             <audio class="song">
-                <source src="/sounds/rain.mp3" />
+                <source src="https://www.chosic.com/wp-content/uploads/2021/11/Calm-and-Peaceful.mp3" />
               </audio>
               <img src="/svg/play.svg" class="play"></img>
               <svg class="track-outline" width="453" height="453" viewBox="0 0 453 453" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,12 +49,12 @@
                 <h3 class="time-display">0:00</h3>      
       </div>
       <div class="sound-picker">
-        <button data-sound="/sounds/rain.mp3" data-image="/images/user.png" >Rain</button>
-        <button data-sound="/sounds/beach.mp3" data-image="/video/beach.mp4">Beach</button>
-        <button data-sound="/sounds/rain.mp3" data-image="/video/rain.mp4" >Rain</button>
-        <button data-sound="/sounds/beach.mp3" data-image="/video/beach.mp4">Beach</button>
-        <button data-sound="/sounds/rain.mp3" data-image="/video/rain.mp4" >Rain</button>
-        <button data-sound="/sounds/beach.mp3" data-image="/video/beach.mp4">Beach</button>
+        <button data-sound="https://cdn.pixabay.com/download/audio/2022/07/06/audio_bafec9fdb3.mp3?filename=meditative-rain-114484.mp3">Rain</button>
+        <button data-sound="https://cdn.pixabay.com/download/audio/2022/07/24/audio_56b7f1bc3a.mp3?filename=tibetan-indian-meditation-115567.mp3">Binaural Beat</button>
+        <button data-sound="https://www.chosic.com/wp-content/uploads/2022/08/beach-waves.mp3">Beach Waves</button>
+        <button data-sound="https://www.chosic.com/wp-content/uploads/2021/04/smand__nightingale-song.mp3">Birds</button>
+        <button data-sound="https://www.chosic.com/wp-content/uploads/2022/01/04-Meydan-Surreal-Forest.mp3">Forest</button>
+        <button data-sound="https://www.chosic.com/wp-content/uploads/2022/01/silent-wood.mp3">Beats</button>
       </div>
     </div>
 

@@ -13,6 +13,7 @@
     justify-content: space-evenly;
     align-items: center;
     font-family: "Montserrat", sans-serif;
+    background: #000;
   }
   
   .time-select,
@@ -76,10 +77,12 @@
   img.play {
     width: 30%;
 }
+img.replay {
+  width: 20px;
+}
 img.play:hover, img.replay:hover{
   cursor: pointer;
 }
-
 
   video {
     position: fixed;
@@ -142,3 +145,125 @@ img.play:hover, img.replay:hover{
     pointer-events: none;
     user-select: none;
   }
+  .vid-container {
+    position: absolute;
+}
+.curveWrap {
+  opacity: 0.7;
+  width: 150vw;
+  height: 100vh;
+  position: absolute;
+  transform: translateX(-30vw) rotate(0deg);
+  will-change: transform;
+}
+.curveWrap .curve {
+  stroke-linecap: round;
+  stroke-opacity: 0;
+}
+.curveWrap .curve path {
+  transform-origin: center;
+}
+.curveWrap .curve path:nth-child(1) {
+  stroke-width: 14;
+  -webkit-animation: curve 35s linear 1.6s infinite;
+          animation: curve 35s linear 1.6s infinite;
+}
+.curveWrap .curve path:nth-child(6n+1) {
+  stroke: #5cbbe7;
+}
+.curveWrap .curve path:nth-child(6n+2) {
+  stroke: #115473;
+}
+.curveWrap .curve path:nth-child(6n+3) {
+  stroke: f4c3bf;
+}
+.curveWrap .curve path:nth-child(6n+4) {
+  stroke: lightblue;
+}
+.curveWrap .curve path:nth-child(6n+5) {
+  stroke: #487e8b;
+}
+.curveWrap .curve path:nth-child(6n+6) {
+  stroke: #03b9bb;
+}
+.curveWrap .curve path:nth-child(2) {
+  stroke-width: 48;
+  -webkit-animation: curve 35s linear 3.2s infinite;
+          animation: curve 35s linear 3.2s infinite;
+}
+.curveWrap .curve path:nth-child(6n+1) {
+  stroke: rgb(132, 102, 27);
+}
+.curveWrap .curve path:nth-child(6n+2) {
+  stroke: rgb(64, 104, 179);
+}
+.curveWrap .curve path:nth-child(6n+3) {
+  stroke: rgb(85, 120, 34);
+}
+.curveWrap .curve path:nth-child(6n+4) {
+  stroke: lightblue;
+}
+.curveWrap .curve path:nth-child(6n+5) {
+  stroke: rgb(32, 88, 32);
+}
+.curveWrap .curve path:nth-child(6n+6) {
+  stroke: rgb(76, 171, 141);
+}
+.curveWrap .curve path:nth-child(3) {
+  stroke-width: 39;
+  -webkit-animation: curve 35s linear 4.8s infinite;
+          animation: curve 35s linear 4.8s infinite;
+}
+.curveWrap .curve path:nth-child(6n+1) {
+  stroke: rgb(32, 218, 122);
+}
+.curveWrap .curve path:nth-child(6n+2) {
+  stroke: cornflowerBlue;
+}
+.curveWrap .curve path:nth-child(6n+3) {
+  stroke: rgb(104, 26, 192);
+}
+.curveWrap .curve path:nth-child(6n+4) {
+  stroke: lightblue;
+}
+.curveWrap .curve path:nth-child(6n+5) {
+  stroke: rgb(119, 111, 209);
+}
+.curveWrap .curve path:nth-child(6n+6) {
+  stroke: rgb(128, 0, 109);
+}
+.curveWrap .curve path:nth-child(4) {
+  stroke-width: 19;
+  -webkit-animation: curve 35s linear 6.4s infinite;
+          animation: curve 35s linear 6.4s infinite;
+}
+.curveWrap .curve path:nth-child(6n+1) {
+  stroke: rgb(150, 122, 50);
+}
+.curveWrap .curve path:nth-child(6n+2) {
+  stroke: rgb(62, 105, 184);
+}
+.curveWrap .curve path:nth-child(6n+3) {
+  stroke: rgb(52, 65, 32);
+}
+.curveWrap .curve path:nth-child(6n+4) {
+  stroke: lightblue;
+}
+.curveWrap .curve path:nth-child(6n+5) {
+  stroke: rgb(42, 97, 42);
+}
+.curveWrap .curve path:nth-child(6n+6) {
+  stroke: olive;
+}
+@-webkit-keyframes curve {
+  50% {
+    transform: rotateX(360deg) scaley(1) skewY(8deg);
+    stroke-opacity: 1;
+  }
+}
+@keyframes curve {
+  50% {
+    transform: rotateX(360deg) scaley(1) skewY(8deg);
+    stroke-opacity: 1;
+  }
+}
