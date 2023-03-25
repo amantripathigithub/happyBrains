@@ -386,6 +386,7 @@ app.post("/solution", (req, res) => {
     var problem2 = req.body.blank2;
    var email = req.body.blank3;
    var name = req.body.blank4;
+   var patient= req.body.blank5;
    if(problem2[problem2.length-1]===',')
    problem2=problem2.substring(0,problem2.length-1);
    if(email[email.length-1]===',')
@@ -393,6 +394,7 @@ app.post("/solution", (req, res) => {
    if(name[name.length-1]===',')
    name=name.substring(0,name.length-1);
 
+var solved=req.body.blank6;
 
 
     let arr = sol.split('@,');
@@ -403,17 +405,45 @@ app.post("/solution", (req, res) => {
         //console.log(req.body);
     
         app.use(express.static("../frontend"));
-        res.render(path.join(__dirname, "../frontend", "/solution"),{sol:arr,problem:problem2,email:email,name:name});
+        res.render(path.join(__dirname, "../frontend", "/solution"),{sol:arr,problem:problem2,email:email,name:name,patient:patient,solved:solved});
     });
     
     
 
+
+    app.post("/solutionfeed", (req, res) => {
+
+
+
+        const sol = req.body.blank;
+        var problem2 = req.body.blank2;
+      
+       if(problem2[problem2.length-1]===',')
+       problem2=problem2.substring(0,problem2.length-1);
+      
+    
+    
+    
+        let arr = sol.split('@,');
+        arr.pop();
+        //console.log(arr);
+        
+    
+            //console.log(req.body);
+        
+            app.use(express.static("../frontend"));
+            res.render(path.join(__dirname, "../frontend", "/solutionfeed"),{sol:arr,problem:problem2});
+        });
+        
+        
+    
 
     app.post("/solved",async function (req, res) {
 
         var problem=req.body.blank2;
         var email=req.body.blank3;
         var name = req.body.blank4;
+        var patient=req.body.blank5;
         if(problem[problem.length-1]===',')
    problem=problem.substring(0,problem.length-1);
    if(email[email.length-1]===',')
@@ -438,14 +468,13 @@ app.post("/solution", (req, res) => {
             var patient;
             const result = await Post.updateOne({problem:problem}, updateDoc).then(async (message)=>
            {
-            posts = await Post.find({email:email}).then(async (message2)=>{
-                patient = await Patient.find({email:email}).then((message3)=>{
-                    //for(var i=1;i<100000000;i++);
-                    // app.use(express.static("../frontend"));
-                    // return  res.render(path.join(__dirname, "../frontend", "/user-dashboard"),{patient:patient,posts:posts});
+           // posts = await Post.find({email:email}).then(async (message2)=>{
+                // patient = await Patient.find({email:email}).then((message3)=>{
+                //     //for(var i=1;i<100000000;i++);
+                    
                    
-                });
-            });
+                // });
+            
            } );
             //clearTimeout(30000);
         
@@ -453,6 +482,8 @@ app.post("/solution", (req, res) => {
          
            //clearTimeout(300000);
             //console.log(patient);
+             app.use(express.static("../frontend"));
+            return  res.render(path.join(__dirname, "../frontend", "/user"));
            
         });
       

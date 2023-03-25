@@ -234,9 +234,18 @@
                     <input type="hidden" value="<%= problem %>" name="blank2" />
                     <input type="hidden" value="<%=email%>" name="blank3" />
                     <input type="hidden" value="<%=name%>" name="blank4" />
+                    <input type="hidden" value="<%=patient%>" name="blank5" />
                 <div class="btn">
+                    <% if(solved==="1") { %>
+                        <input type="submit" class="button" value="Solved" disabled="disabled">
+                        <% } %>
+
+                        <% if(solved==="0") { %>
+                            <input type="submit" class="button" value="Solved">
+                            <% } %>
+    
+                    
                    
-                    <input type="submit" class="button" value="Solved">
                 </div>
             </form>
             </div>
