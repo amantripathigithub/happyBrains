@@ -489,9 +489,87 @@ var solved=req.body.blank6;
       
 
 
+
+        app.post("/createpost", (req, res) => {
+
+
+const ptype=req.body.problemcategory;
+const problem=req.body.problem;
+           
+            
+                app.use(express.static("../frontend"));
+                res.render(path.join(__dirname, "../frontend", "/verifylogin"),{ptype:ptype,problem:problem});
+            });
     
     
-        
+app.post("/verifylogin", async (req, res) => {
+
+
+                const ptype=req.body.blank2;
+                const problem=req.body.blank3;
+                const email=req.body.email;
+                
+
+
+
+                 //start
+    try {
+        // check if the user exists
+       
+        const patient = await Patient.findOne({ email: req.body.email });
+       
+        if (patient) {
+            //check if password matches
+            
+            const result = req.body.password === patient.password;
+            // for token    ---->>>>
+           // const token = await user.generateAuthToken();
+            //console.log("the token part" + token);
+            // res.cookie("jwt", token, {
+            //     expires: new Date(Date.now() + 10000000),
+            //     httpOnly: true
+            //     //secure:true
+            // });
+
+            // yaha tak ---->>>>>>
+
+            if (result) {
+var solutionss=[]
+                const post=new Post({email:email,ptype:ptype,name:patient.name,problem:problem,solved:"0",solutions:[]});
+
+                post.save().then(async () => {
+                    const posts = await Post.find({email:patient.email});
+                    app.use(express.static("../frontend"));
+                    res.render(path.join(__dirname, "../frontend", "/user-dashboard"),{patient:patient,posts:posts});
+                }).catch((err) => res.status(500).json({ error: "failed to register !! " }));
+    
+    
+
+
+
+                //changes are here
+            
+            } else {
+                // if password not match
+                return res.json({ error: "invalid details !!" });
+            }
+        } else {
+
+
+
+            // if user email is not exist 
+           return res.render(path.join(__dirname, "../frontend", "/user-signup"));
+
+        }
+    } catch (error) {
+       return res.status(400).json({ error });
+    }
+
+    //end
+      });
+                    
+                    
+                        
         
 
 
@@ -516,6 +594,11 @@ app.post("/contributor-home",function(req,res){
     //console.log(req.body);
    
 })
+
+
+
+
+
 
 app.listen(3000, () => {
     console.log("Server listening on port " + 3000);
