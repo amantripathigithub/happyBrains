@@ -12,6 +12,8 @@ body {
     line-height: 1.675;
     text-transform: none;
     overflow-x: hidden;
+    padding: 0;
+    margin: 0;
 }
 
 p {
