@@ -74,6 +74,26 @@ app.get("/", (req, res) => {
 });
 
 
+app.post("/signupuserpage", (req, res) => {
+    app.use(express.static("../frontend"));
+    res.render(path.join(__dirname, "../frontend", "/user-signup"));
+});
+
+app.post("/loginuserpage", (req, res) => {
+    app.use(express.static("../frontend"));
+    res.render(path.join(__dirname, "../frontend", "/user-login"));
+});
+
+app.post("/contsignuppage", (req, res) => {
+    app.use(express.static("../frontend"));
+    res.render(path.join(__dirname, "../frontend", "/contributor-signup"));
+});
+
+app.post("/contloginpage", (req, res) => {
+    app.use(express.static("../frontend"));
+    res.render(path.join(__dirname, "../frontend", "/contributor-login"));
+});
+
 app.get("/logincon", (req, res) => {
     app.use(express.static("../frontend"));
     return res.render(path.join(__dirname, "../frontend", "/contributor-login"));
