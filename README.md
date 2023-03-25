@@ -12,7 +12,7 @@
   Any user can visit MEDITATE page on which he can meditate for selected time and with nature sound effects.
   
 ## Demo Video Link:
-  <a href="https://youtu.be/dQw4w9WgXcQ">https://youtu.be/dQw4w9WgXcQ</a>
+  <a href="https://youtu.be/AMG-6-Hi__8">https://youtu.be/AMG-6-Hi__8</a>
   
 ## Presentation Link:
   <a href="https://drive.google.com/file/d/14ZvaJbyV8wpubxo-BAbMJNsa2xLATFF7/view?usp=sharing"> PPT link here </a>
