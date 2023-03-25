@@ -56,7 +56,7 @@
         }
     </style>
      <form action="/contributor-home" method="post">
-<input type="text" id="attlist1" name="attlist" value="" />
+<input type="hidden" id="attlist1" name="attlist" value="" />
 <input type="hidden" value="<%= user.name%>" name="name" required/>
 <input type="hidden" value="<%= user.email %>" name="email" required/>
 <input type="hidden" value="<%= user.contact%>" name="phone" maxlength="10" required/>
@@ -66,20 +66,20 @@
         <div class="cat-container">
             <h1 class="title">Help us Make you categorised</h1>
             <div class="pill-container">
-                <input type="checkbox" id="option-1" name="selector" value="a" >
-                <label class="category-selector option-a" for="option-1"> Option A </label>
+                <input type="checkbox" id="option-1" name="selector" value="health" >
+                <label class="category-selector option-a" for="option-1"> health </label>
 
-                <input type="checkbox" id="option-2" name="selector" value="b">
-                <label class="category-selector" for="option-2">Option B</label>
+                <input type="checkbox" id="option-2" name="selector" value="education">
+                <label class="category-selector" for="option-2">education</label>
 
-                <input type="checkbox" id="option-3" name="selector" value="c">
-                <label class="category-selector" for="option-3">Option C</label>
+                <input type="checkbox" id="option-3" name="selector" value="relationship">
+                <label class="category-selector" for="option-3">relationship</label>
 
-                <input type="checkbox" id="option-4" name="selector" value="d">
-                <label class="category-selector" for="option-4">Option D</label>
+                <input type="checkbox" id="option-4" name="selector" value="stress">
+                <label class="category-selector" for="option-4">stress</label>
 
-                <input type="checkbox" id="option-5" name="selector" value="e">
-                <label class="category-selector" for="option-e">Option El</label>
+                <input type="checkbox" id="option-5" name="selector" value="meditation">
+                <label class="category-selector" for="option-5">meditation</label>
             </div>
             <button class="contributor-next-btn" onclick="next()">ADD</button>
             
