@@ -13,11 +13,13 @@
     <div class="main">
         <div class="post-form">
             <div class="post-form-container">
-                <h3 class="post-create-title">Ynha problem likh de bhai jaldi se</h3>
-                <form action="/createpost" method="post">
+                <h3 class="post-create-title"><%=problem%></h3>
+                <form action="/postsolution" method="post">
+                    <input type="hidden" value="<%=problem%>" name="blank2" />
+                    <input type="hidden" value="<%=email%>" name="blank3" />
                     <div class="problem-container">
-                        <label> Write problme solution</label>
-                        <textarea class="problem-write" name="problem" rows="9" cols="25" required=""></textarea>
+                        <label>Enter your Solution.</label>
+                        <textarea class="problem-write" name="solution" rows="9" cols="25" required=""></textarea>
 
                     </div>
                     <div class="post-btn">
