@@ -2,7 +2,7 @@ const song = document.querySelector(".song");
 const play = document.querySelector(".play");
 const replay = document.querySelector(".replay");
 const outline = document.querySelector(".moving-outline circle");
-const video = document.querySelector(".vid-container video");
+const video = document.querySelector(".vid-container img");
 //Sounds
 const sounds = document.querySelectorAll(".sound-picker button");
 //Time Display
@@ -21,7 +21,7 @@ timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${Math.floor(
 sounds.forEach(sound => {
   sound.addEventListener("click", function() {
     song.src = this.getAttribute("data-sound");
-    video.src = this.getAttribute("data-video");
+    video.src = this.getAttribute("data-image");
     checkPlaying(song);
   });
 });
@@ -55,11 +55,9 @@ timeSelect.forEach(option => {
 const checkPlaying = song => {
   if (song.paused) {
     song.play();
-    video.play();
     play.src = "./svg/pause.svg";
   } else {
     song.pause();
-    video.pause();
     play.src = "./svg/play.svg";
   }
 };
@@ -77,6 +75,5 @@ song.ontimeupdate = function() {
     song.pause();
     song.currentTime = 0;
     play.src = "./svg/play.svg";
-    video.pause();
   }
 };
