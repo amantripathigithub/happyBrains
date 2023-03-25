@@ -110,6 +110,8 @@ p.banner-text {
 section.user {
     background: #eee;
     height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
 .user-container {
@@ -121,4 +123,19 @@ section.user {
     /* top: 50%; */
     /* left: 50%; */
     /* transform: translate(-50%, -50%); */
+}
+.user-login-section {
+    width: 40%;
+    border: 1px solid;
+    padding: 10px;
+}
+
+.contributor-login {
+    width: 40%;
+    border: 1px solid;
+    padding: 10px;
+}
+
+form.user-login-container {
+    display: inline-block;
 }
