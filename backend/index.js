@@ -28,9 +28,9 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-TWILIO_ACCOUNT_SID = "AC767517aeca2be00365e5ccf94783c392"
-TWILIO_AUTH_TOKEN = "e86b61cf367a3446ed9ef8c3db88f1e7"
-TWILIO_SERVICE_SID = "VAd7f66546099e43f7d46310b5c2bdd997"
+TWILIO_ACCOUNT_SID = "TwilioASID"
+TWILIO_AUTH_TOKEN = "TwilioAuthToken"
+TWILIO_SERVICE_SID = "TwilioServiceSID"
 
 const client=require('twilio')(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN)
 
